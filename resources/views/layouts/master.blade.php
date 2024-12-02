@@ -26,7 +26,7 @@
                 <div class="flex space-x-4">
                     <!-- logo -->
                     <div>
-                        <a href="#" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+                        <a href=" {{ route('home') }} " class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
                             <svg class="h-6 w-6 mr-1 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -39,6 +39,7 @@
                     <!-- primary nav -->
                     <div class="hidden md:flex items-center space-x-1">
                         <a href="{{route('articles')}}" class="py-5 px-3 text-gray-700 hover:text-gray-900">Les articles</a>
+                        <a href=" {{route('creation')}} " class="py-5 px-3 text-gray-700 hover:text-gray-900">Nouvel article</a>
                     </div>
                 </div>
 
@@ -70,7 +71,8 @@
     </nav>
 
     <!-- content goes here -->
-    <div class="py-32">
+    <div class="p-6">
+        @include('messages.notif-messages')
 
         @yield('content')
     </div>

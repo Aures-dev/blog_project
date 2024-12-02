@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    //Un utilisateur écrit plusieurs articles
+    public function articles(){
+        return $this->hasMany(Article::class);
+    }
 }

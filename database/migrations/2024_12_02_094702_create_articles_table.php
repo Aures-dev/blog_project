@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->string('title', 255);//max 255 caractère pour le champ du titre
-            $table->string('image');//champ pour stocker le chemin de l'article
+            $table->string('image')->nullable();//champ pour stocker le chemin de l'image de couverture
             $table->text('content')->nullable();//champ pour le contenu de l'article
             $table->string('file_path')->nullable();//chemin du fichier pdf
             $table->foreignId('user_id')->nullable();// Crée la colonne 'user_id', qui est une clé étrangère vers la table 'users'
