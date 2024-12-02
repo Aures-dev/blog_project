@@ -20,15 +20,22 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         $imageFaker = new ImageFaker(new Picsum());
-        $imagePath = $imageFaker->image(public_path("images"));
         
+        // Store image in storage/app/public/images and get the absolute path
+        $imagePath = $imageFaker->image(storage_path('app/public/images')); 
+        
+        // Now strip out the absolute path (public_path()) to save the relative path in the database
+        $relativePath = str_replace(storage_path('app/public/') , 'storage/', $imagePath); 
+    
         return [
-            "title"=> $this->faker->sentence(3),
-            "image" => str_replace(public_path() . DIRECTORY_SEPARATOR, '', $imagePath),
-            "content"=> $this->faker->paragraph(25),
-            'user_id' => function (){
+            "title" => $this->faker->sentence(3),
+            "image" => $relativePath, // Save relative path for easier use in Blade
+            "content" => $this->faker->paragraph(25),
+            'user_id' => function () {
                 return User::inRandomOrder()->first()->id;
             },
         ];
     }
+    
+
 }

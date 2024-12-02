@@ -39,7 +39,7 @@
                     <!-- primary nav -->
                     <div class="hidden md:flex items-center space-x-1">
                         <a href="{{route('articles')}}" class="py-5 px-3 text-gray-700 hover:text-gray-900">Les articles</a>
-                        <a href=" {{route('creation')}} " class="py-5 px-3 text-gray-700 hover:text-gray-900">Nouvel article</a>
+                        <a href="{{route('creation')}}" class="py-5 px-3 text-gray-700 hover:text-gray-900">Nouvel article</a>
                     </div>
                 </div>
 
