@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -28,3 +29,8 @@ Route::post('/register', [RegisterController::class, 'create'])->name('register'
 Route::get('/login', [SessionsController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [SessionsController::class, 'authenticate'])->name('login')->middleware('guest');
 Route::post('/logout', [SessionsController::class, 'logout'])->name('logout')->middleware('auth');
+
+/**
+* Routes liées à l'utilisateur
+*/
+Route::get('/profile', [UserController::class, 'index'])->name('profile')->middleware('auth');
