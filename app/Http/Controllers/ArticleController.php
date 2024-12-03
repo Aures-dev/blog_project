@@ -34,11 +34,21 @@ class ArticleController extends Controller
         $validatedData = $request->validate([
             '_token' => 'required|string',
             'title' => 'required|string',
+            'description' => 'nullable|string',
             'content' => 'nullable|string',
             'file_path' => 'nullable|mimes:pdf|max:10000', // Ensure PDF file type and size
             'user_id' => 'required|numeric|exists:users,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Ensure image file type and size
         ]);
+
+        // Vérifier que l'utilisateur a choisi un contenu ou un fichier PDF
+    if (empty($request->content) && !$request->hasFile('file_path')) {
+        return back()->withErrors(['content' => 'Vous devez fournir un contenu ou un fichier PDF.'])->withInput();
+    }
+
+    if (!empty($request->content) && $request->hasFile('file_path')) {
+        return back()->withErrors(['content' => 'Vous ne pouvez pas fournir à la fois un contenu et un fichier PDF.'])->withInput();
+    }
 
         // Gestion du upload des fichiers
         $pdfPath = null;

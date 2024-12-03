@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 255);//max 255 caractère pour le champ du titre
             $table->string('image')->nullable();//champ pour stocker le chemin de l'image de couverture
+            $table->text('description')->nullable();//champ pour la description de l'article
             $table->text('content')->nullable();//champ pour le contenu de l'article
             $table->string('file_path')->nullable();//chemin du fichier pdf
             $table->foreignId('user_id')->nullable();// Crée la colonne 'user_id', qui est une clé étrangère vers la table 'users'
