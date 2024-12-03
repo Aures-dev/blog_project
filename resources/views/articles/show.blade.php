@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Article')
+@section('title', 'Article')
 
 @section('content')
 
@@ -20,14 +20,23 @@
     </div> -->
 
     @if ($article->file_path)
-    <iframe src="{{ asset('storage/' . $article->file_path) }}" frameborder="0" width="100%" height="700" alt="pdf"></iframe>
-    @else
-    <div class="flex justify-between" > 
-        <p> {{$article->content}} </p>
-        <div class="w-full">  
-            <img src="{{ asset( 'storage/'.$article->image) }}" alt="cover-image" class="w-2/6">
+        <div class="container mx-auto my-6 p-4 bg-white shadow-lg rounded-lg border border-gray-200">
+            <iframe src="{{ asset('storage/' . $article->file_path) }}" frameborder="0" width="100%" height="700"
+                class="rounded-md" title="PDF Viewer">
+            </iframe>
         </div>
-    </div>
+    @else
+        <div
+            class="container mx-auto my-6 p-4 bg-white shadow-lg rounded-lg border border-gray-200 flex flex-col md:flex-row gap-6 items-start">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">Description :</h2>
+            <p class="flex-1 text-gray-800 text-lg leading-relaxed">
+                {{$article->content}}
+            </p>
+            <div class="flex justify-center md:w-1/3 w-full">
+                <img src="{{ asset('storage/' . $article->image) }}" alt="cover-image"
+                    class="w-full h-auto rounded-lg shadow-md object-cover">
+            </div>
+        </div>
     @endif
 
 </article>
